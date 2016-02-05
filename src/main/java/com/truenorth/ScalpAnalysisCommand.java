@@ -6,6 +6,7 @@ import org.scijava.command.CommandService;
 import org.scijava.module.Module;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.ui.UIService;
 
 import ij.ImagePlus;
 import net.imagej.Dataset;
@@ -23,6 +24,9 @@ public class ScalpAnalysisCommand<T extends RealType<T>> implements Command {
 
 	@Parameter
 	CommandService cmd;
+	
+	@Parameter
+	UIService ui;
 
 	@Parameter
 	OpService ops;
@@ -75,9 +79,10 @@ public class ScalpAnalysisCommand<T extends RealType<T>> implements Command {
 			// run count particles/draw overlay command on the thresholded image calculated above 
 			module = cmd.run(CountParticlesDrawOverlay.class, true, "thresholdedImp", thresholdedImp, "minSize", 0,
 					"maxSize", 200, "minCircularity", 0, "maxCircularity", 100, "overlayImp", overlay1).get();
-
+		
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
+			ui.show(overlay1);
 			
 			///// Method II /////////////////////////////////////////////////////////////////////////////////////////
 			
