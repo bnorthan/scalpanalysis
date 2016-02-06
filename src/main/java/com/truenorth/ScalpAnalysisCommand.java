@@ -79,10 +79,8 @@ public class ScalpAnalysisCommand<T extends RealType<T>> implements Command {
 			// run count particles/draw overlay command on the thresholded image calculated above 
 			module = cmd.run(CountParticlesDrawOverlay.class, true, "thresholdedImp", thresholdedImp, "minSize", 0,
 					"maxSize", 200, "minCircularity", 0, "maxCircularity", 100, "overlayImp", overlay1).get();
-		
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-			ui.show(overlay1);
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			///// Method II /////////////////////////////////////////////////////////////////////////////////////////
 			
@@ -92,6 +90,9 @@ public class ScalpAnalysisCommand<T extends RealType<T>> implements Command {
 			// run count particles/draw overlay command on the thresholded image calculated above
 			module = cmd.run(CountParticlesDrawOverlay.class, true, "thresholdedImp", blueImp2, "minSize", 0, "maxSize",
 					4000, "minCircularity", 0, "maxCircularity", 100, "overlayImp", overlay2).get();
+			
+			ui.show(overlay1);	
+			ui.show(overlay2);
 			
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		} catch (Exception ex) {
